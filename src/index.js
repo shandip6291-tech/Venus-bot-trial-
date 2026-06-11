@@ -1,18 +1,11 @@
-require("dotenv").config();
-
-const {
-  Client,
-  GatewayIntentBits
-} = require("discord.js");
-
-const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds
-  ]
-});
-
 client.once("ready", () => {
-  console.log(`${client.user.tag} online`);
-});
+    console.log(`${client.user.tag} online`);
 
-client.login(process.env.TOKEN);
+    client.user.setPresence({
+        activities: [{
+            name: process.env.STATUS || ".help | Venus Ultra",
+            type: 3
+        }],
+        status: "online"
+    });
+});
